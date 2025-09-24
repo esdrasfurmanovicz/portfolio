@@ -1,17 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Esdras Furmanovicz</title>
-    <link rel="stylesheet" href="styles/index.css">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Portfólio - Esdras Furmanovicz</title>
+  <meta name="description" content="Portfólio profissional de Esdras Furmanovicz - Desenvolvedor Web">
+  <meta name="keywords" content="portfólio, desenvolvedor, web, PHP, Laravel, programação">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <button class="language" id="br">Br <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAiCAYAAAA6RwvCAAAACXBIWXMAAAsTAAALEwEAmpwYAAABqElEQVR4nO2Wz0vCYBzG/b8MLAg69MKmh+gHohejw4oowyIyhU7WIQ/dOigZlVEaWFBCURgRspLwUERIEoFJXSo6FDzxDgynzm06c4c98FwGYx+e7/N995pMhgwZakAkxthJjAm1yfY/kN5ddoXEWLTD9NuagIwdEcFtA2HiLELpHnwXOvDzYsb2dTfYPeZ/QbhDgvucBSiaRc49WjCeJK0HYcpSqIQoWW06qkG4ihT4syF4vEFYHVHB0/NBXKUGVaejGISpkUIkPIVOWwIW677I9Nn62qSqdBSBcDW6kE1PwrfEwxvgMTp7gf6RkyqY8mTk0qkLwtTpQubmDpUqvn4hkczDs5BGl+1AGJPS7kiCcBIbUbJrIgHWmUTf8DFc7hTmAjw24w94ev4UoHL5d/gXTyXfr0ynYRDWEa3qRslu/yWyt28oFD+aByEyo6GxS4FQ09GshneaHw2RKSstYq2NKS9r5nxAm7ISmXToikqt70akBetL6qRDk6FjooeZzbmFGd+yKAnNDzSityOe6OmnR/R2DSB6uhgRjSwC0c3l2ZAhQybl+gW7Sq9SqobQrgAAAABJRU5ErkJggg==" alt="brazil"></button>
-        <button class="language hide" id="en">En <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAiCAYAAAA6RwvCAAAACXBIWXMAAAsTAAALEwEAmpwYAAACiUlEQVR4nO1W7UtTYRz1r4r6ECVqYmX5uqS51Gq48m3N7nDDZVSovakFWU1CM8kRw5DyZa9Ou+ooXdrNmGxoH8wMnHd3Ti1rO/E8Hy5KfbobTGEHDvfAc7n3/M7vXLgpKUkkkcR+RlOZ8Vt2rhlSOJZTFl0/nRaRypBOMykauXHOGMg6a8GJYiuO5A6g4KIDqXmDVMuUTnrdqY/mDaBQ6aB6JFOOcNoByRSYKk40oq2zey2uJTjYZWTIhvDZu4ZnL+eRU2bH9x+baLjrwXn1GNaCv6C8yqKjx4sv8zy919bLYu3De8nkZ6efi0Y01yc5tcGNKw1uOqW+cQoq7TjVTQ9nIb/swnG5BfceczipsKKcYaFvmqLn1tFFrPJCLHwkGjFcMi2Rh5YzrLiG/2myLpII0aU1Y8gsGoZT3YhQfa1kBttbnbs6QiYN8D/R8pSDonIU278jqDG46eRbW39oP4w9XiyvbNAuzfuDML9djG9HdNX9i2RKlXacljBdNoRK/QRdQ06pjWqSRpFqREyEdKa4wgX77W4Euzokk+8z9e/qCIm/QjeB1PxBmgIxlFYwiJstH2k/jp0Zxq22GbqO/AsO1DdP03vj2pE69ZuFkfFlvHOv0Jf7FgT0mP00EWF9mxognYhEo1DWsuh+5YP/awjphUOwt5jA976QzEB/3+tdHclWWEFIYt+pT5XYaCLkUyWaJLPzPK4dMWo6fbXyTkjhVHU9BKZSMvkHd0ZFI6u80B7jnhGXjgTmuK7Ap1kkhHNcp2gkpK3iYtlzOF4dCek0M+tZh5EICjr1zN7ryOpeMSJcYzzh3AwkgkED49l7Zd180npIaGsuSQQ32u8f/OffNYkkkthP+Avq+T3reUkjZwAAAABJRU5ErkJggg==" alt="usa"></button>
-    </header>
-    <script src="scripts/jquery-3.7.1.min.js"></script>
-    <script src="scripts/translate.js"></script>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center light-background sticky-top">
+    <div class="container position-relative d-flex align-items-center justify-content-between">
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html" class="active" data-lang="pt">Início</a><a href="index.html" class="active d-none" data-lang="en">Home</a></li>
+          <li><a href="about.html" data-lang="pt">Sobre</a><a href="about.html" class="d-none" data-lang="en">About</a></li>
+          <li><a href="resume.html" data-lang="pt">Currículo</a><a href="resume.html" class="d-none" data-lang="en">Resume</a></li>
+          <li><a href="services.html" data-lang="pt">Serviços</a><a href="services.html" class="d-none" data-lang="en">Services</a></li>
+          <li><a href="portfolio.html" data-lang="pt">Portfólio</a><a href="portfolio.html" class="d-none" data-lang="en">Portfolio</a></li>
+          <li><a href="contact.html" data-lang="pt">Contato</a><a href="contact.html" class="d-none" data-lang="en">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <!-- Botão de troca de idioma -->
+      <button id="lang-toggle" class="btn btn-sm btn-outline-primary">EN</button>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4 align-items-center">
+          <div class="col-lg-6 order-2 order-lg-1">
+            <div class="hero-content">
+              <h1 data-lang="pt">Olá, eu sou <span class="highlight">Esdras Furmanovicz</span></h1>
+              <h1 data-lang="en" class="d-none">Hello, I'm <span class="highlight">Esdras Furmanovicz</span></h1>
+
+              <h2 data-lang="pt">Desenvolvedor <span class="typed" data-typed-items="PHP & Laravel, Frontend, Backend, Soluções Web"></span></h2>
+              <h2 data-lang="en" class="d-none">Creative <span class="typed" data-typed-items="PHP & Laravel, Frontend, Backend, Web Solutions"></span></h2>
+
+              <p data-lang="pt">Sou apaixonado por tecnologia e programação, com experiência em desenvolvimento web, criação de sistemas e soluções personalizadas.</p>
+              <p data-lang="en" class="d-none">I’m passionate about technology and programming, experienced in web development, systems creation, and custom solutions.</p>
+
+              <div class="hero-actions">
+                <a href="portfolio.html" class="btn btn-primary" data-lang="pt">Ver meus projetos</a>
+                <a href="portfolio.html" class="btn btn-primary d-none" data-lang="en">View My Work</a>
+                
+                <a href="contact.html" class="btn btn-outline" data-lang="pt">Entrar em contato</a>
+                <a href="contact.html" class="btn btn-outline d-none" data-lang="en">Get In Touch</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 order-1 order-lg-2">
+            <div class="hero-image" data-aos="zoom-in" data-aos-delay="300">
+              <div class="image-wrapper">
+                <img src="assets/img/profile/profile-square-11.jpg" alt="Esdras Furmanovicz" class="img-fluid">
+                <div class="floating-elements">
+                  <div class="floating-card design" data-aos="fade-left" data-aos-delay="700">
+                    <i class="bi bi-palette"></i>
+                    <span>Design</span>
+                  </div>
+                  <div class="floating-card code" data-aos="fade-right" data-aos-delay="800">
+                    <i class="bi bi-code-slash"></i>
+                    <span>Code</span>
+                  </div>
+                  <div class="floating-card creativity" data-aos="fade-up" data-aos-delay="900">
+                    <i class="bi bi-lightbulb"></i>
+                    <span>Ideas</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="copyright text-center ">
+        <p data-lang="pt">© <span>Direitos Reservados</span> <strong class="px-1 sitename">Esdras Furmanovicz</strong></p>
+        <p data-lang="en" class="d-none">© <span>All Rights Reserved</span> <strong class="px-1 sitename">Esdras Furmanovicz</strong></p>
+      </div>
+    </div>
+      <div class="social-links d-flex justify-content-center">
+        <a href="https://github.com/esdrasfurmanovicz"><i class="bi bi-github"></i></a>
+        <a href="https://www.instagram.com/esdrasf.bat"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/esdras-furmanovicz"><i class="bi bi-linkedin"></i></a>
+      </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- JS -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/js/toggle.js"></script>
+  
+
 </body>
 </html>
