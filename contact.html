@@ -130,7 +130,7 @@
                 </div>
                 <div class="content">
                   <h4><span data-lang="pt">Email</span><span data-lang="en" class="d-none">Email</span></h4>
-                  <p>esdrasf.mei@gmail.com</p>
+                  <p>esdras.fmei@gmail.com</p>
                 </div>
               </div>
             </div>
@@ -241,61 +241,67 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
-  <!-- EmailJS SDK -->
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
   <!-- reCAPTCHA v2 -->
+  <!-- Inclua o reCAPTCHA e EmailJS -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Inicializa EmailJS com seu User ID
-      emailjs.init("zkLnSMPfi9p_PvUTc");
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-      const form = document.getElementById('contact-form');
-      const loading = form.querySelector('.loading');
-      const errorMessage = form.querySelector('.error-message');
-      const sentMessage = form.querySelector('.sent-message');
+  <script type="text/javascript">
+    // Inicializa EmailJS
+    emailjs.init('zkLnSMPfi9p_PvUTc');
 
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
+    const form = document.getElementById('contact-form');
+    const btn = form.querySelector('button[type="submit"]');
+    const loading = form.querySelector('.loading');
+    const errorMessage = form.querySelector('.error-message');
+    const sentMessage = form.querySelector('.sent-message');
 
-        // Limpa mensagens
-        errorMessage.style.display = 'none';
-        sentMessage.style.display = 'none';
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
 
-        // Verifica reCAPTCHA
-        const recaptchaResponse = grecaptcha.getResponse();
-        if (!recaptchaResponse) {
-          errorMessage.textContent = "Por favor, confirme que você não é um robô.";
+      // Limpa mensagens
+      errorMessage.style.display = 'none';
+      sentMessage.style.display = 'none';
+
+      // Verifica reCAPTCHA
+      const recaptchaResponse = grecaptcha.getResponse();
+      if (!recaptchaResponse) {
+        errorMessage.textContent = "Por favor, confirme que você não é um robô.";
+        errorMessage.style.display = 'block';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+      loading.style.display = 'block';
+
+      const serviceID = 'default_service';
+      const templateID = 'template_k8q76yd';
+
+      // Adiciona o reCAPTCHA ao form antes de enviar
+      const formData = new FormData(form);
+      formData.append('g-recaptcha-response', recaptchaResponse);
+
+      emailjs.sendForm(serviceID, templateID, form)
+        .then(() => {
+          loading.style.display = 'none';
+          sentMessage.style.display = 'block';
+          btn.disabled = false;
+          btn.textContent = 'Enviar Mensagem';
+          form.reset();
+          grecaptcha.reset(); // Reseta o captcha
+        }, (err) => {
+          loading.style.display = 'none';
+          errorMessage.textContent = "Ocorreu um erro ao enviar a mensagem. Tente novamente.";
           errorMessage.style.display = 'block';
-          return;
-        }
-
-        loading.style.display = 'block';
-
-        // Envia via EmailJS
-        emailjs.send("service_h2iy6ms", "template_k8q76yd", {
-          from_name: form.name.value,
-          from_email: form.email.value,
-          subject: form.subject.value,
-          message: form.message.value,
-          'g-recaptcha-response': recaptchaResponse
-        })
-          .then(function (response) {
-            loading.style.display = 'none';
-            sentMessage.style.display = 'block';
-            form.reset();
-            grecaptcha.reset(); // reseta o captcha
-          }, function (error) {
-            loading.style.display = 'none';
-            errorMessage.textContent = "Ocorreu um erro ao enviar a mensagem. Tente novamente.";
-            errorMessage.style.display = 'block';
-          });
-      });
-
-     
+          btn.disabled = false;
+          btn.textContent = 'Enviar Mensagem';
+          console.error(err);
+        });
     });
-
   </script>
+
 </body>
 
 </html>
