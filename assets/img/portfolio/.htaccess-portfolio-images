@@ -1,0 +1,15 @@
+# .htaccess para bloquear indexação de imagens do portfólio
+# Coloque este arquivo em: /assets/img/portfolio/
+
+<IfModule mod_headers.c>
+  # Bloquear indexação de todas as imagens desta pasta
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>
+
+# Bloquear listagem de diretório
+Options -Indexes
+
+# Permitir acesso aos arquivos (não bloquear visualização)
+<FilesMatch "\.(jpg|jpeg|png|gif|webp|svg)$">
+  Header set X-Robots-Tag "noindex, nofollow"
+</FilesMatch>

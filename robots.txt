@@ -1,0 +1,25 @@
+# robots.txt - Controle de indexação do site
+
+User-agent: *
+
+# Páginas permitidas para indexação
+Allow: /index.html
+Allow: /about.html
+Allow: /contact.html
+
+# Bloquear indexação de outras páginas
+Disallow: /portfolio.html
+Disallow: /portfolio-details.html
+Disallow: /resume.html
+Disallow: /services.html
+Disallow: /service-*.html
+
+# Bloquear indexação de imagens do portfólio
+Disallow: /assets/img/portfolio/
+
+# Bloquear indexação de arquivos específicos
+Disallow: /assets/
+Disallow: /curriculo.pdf
+
+# Sitemap
+Sitemap: https://furmanovicz.com.br/sitemap.xml
