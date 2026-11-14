@@ -183,7 +183,7 @@ export const content = {
           solution: 'Checklist mensal em Laravel: o mês é aberto com os clientes ativos, cada cliente é simulado e conferido, e o fechamento trava a edição (reabrir exige um motivo e fica no histórico). O simulador aplica tabela de alíquotas e perfil de retenção, inclusive a regra de piso mínimo para grupos de impostos pequenos. Tem perfis de administrador e usuário, tour guiado no primeiro acesso e ajuda em cada tela.',
           result: 'Fluxo completo do mês, da abertura ao fechamento, com trilha de quem conferiu e quando. Interface em português, impostos e perfis de retenção comuns já cadastrados e testes automatizados para acesso e perfis.',
           stack: ['PHP', 'Laravel', 'Blade', 'Tailwind CSS', 'Alpine.js', 'SQLite'],
-          links: [],
+          links: [{ label: 'github', href: 'https://github.com/esdrasfurmanovicz/conferencia-financeira' }],
         },
         {
           path: '/projetos/sif',
@@ -251,7 +251,7 @@ export const content = {
           solution: 'Monthly checklist built with Laravel: the month opens with the active clients, each client is simulated and checked, and closing the month locks editing (reopening requires a reason and is logged). The simulator applies a rate card and a withholding profile, including the minimum-floor rule for groups of small taxes. It has admin and user roles, a guided tour on first access and help on every screen.',
           result: 'Complete month flow, from opening to closing, with a trail of who checked what and when. Portuguese interface, common taxes and withholding profiles preloaded, and automated tests for access and roles.',
           stack: ['PHP', 'Laravel', 'Blade', 'Tailwind CSS', 'Alpine.js', 'SQLite'],
-          links: [],
+          links: [{ label: 'github', href: 'https://github.com/esdrasfurmanovicz/conferencia-financeira' }],
         },
         {
           path: '/projects/sif',
