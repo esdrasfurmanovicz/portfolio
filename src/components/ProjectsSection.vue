@@ -31,7 +31,7 @@ import { content } from '../data/content.js'
               <span v-for="s in p.stack" :key="s" class="tag">{{ s }}</span>
             </div>
 
-            <div class="links mono">
+            <div v-if="p.links && p.links.length" class="links mono">
               <a v-for="l in p.links" :key="l.href" :href="l.href" target="_blank" rel="noopener">{{ l.label }} ↗</a>
             </div>
           </div>
