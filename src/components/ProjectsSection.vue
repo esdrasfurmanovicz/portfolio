@@ -12,7 +12,7 @@ import { content } from '../data/content.js'
       </div>
 
       <div class="grid">
-        <article v-for="(p, i) in content.projects[lang].items" :key="i" class="card project">
+        <article v-for="(p, i) in content.projects[lang].items" :key="i" class="card project" :class="{ featured: p.featured }">
           <img :src="p.image" :alt="p.name" class="thumb" loading="lazy" />
           <div class="body">
             <p class="path mono">{{ p.path }}</p>
@@ -129,9 +129,51 @@ dd.result {
   color: var(--accent);
 }
 
+/* projeto em destaque: ocupa a largura toda, com a imagem grande ao lado do texto */
+.project.featured {
+  grid-column: 1 / -1;
+  flex-direction: row;
+}
+
+.featured .thumb {
+  width: 54%;
+  height: auto;
+  min-height: 340px;
+  flex-shrink: 0;
+  border-bottom: none;
+  border-right: 1px solid var(--border);
+  filter: none;
+}
+
+.featured .body {
+  padding: 28px;
+  justify-content: center;
+}
+
+.featured h3 {
+  font-size: 1.35rem;
+}
+
 @media (max-width: 960px) {
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .project.featured {
+    flex-direction: column;
+  }
+
+  .featured .thumb {
+    width: 100%;
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .featured .body {
+    padding: 20px;
   }
 }
 </style>

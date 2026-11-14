@@ -160,6 +160,21 @@ export const content = {
       title: 'Projetos',
       items: [
         {
+          path: '/projetos/doccraft',
+          name: 'DocCraft: editor de documentos',
+          image: './img/doccraft.jpg',
+          featured: true,
+          problem: 'Montar um cartaz, uma proposta ou um relatório bem formatado costuma exigir várias ferramentas, contas e o envio dos seus dados para terceiros.',
+          solution: 'Editor próprio com dois modos: canvas livre (elementos aninhados, camadas, alinhamento, degradê, sombra e tipografia completa) e texto rico (tabelas, imagens redimensionáveis, listas de tarefas e menu de blocos com /). Exporta PDF, HTML e Markdown, roda no navegador ou como app desktop e não pede login.',
+          result: 'Demo online, instaladores para Windows, macOS e Linux gerados por CI, PDF fiel ao que aparece no editor e layout responsivo para celular.',
+          stack: ['React', 'TypeScript', 'Node.js', 'Express', 'SQLite', 'Electron', 'Tiptap'],
+          links: [
+            { label: 'demo', href: 'https://esdrasfurmanovicz.github.io/doccraft/' },
+            { label: 'github', href: 'https://github.com/esdrasfurmanovicz/doccraft' },
+            { label: 'baixar o app', href: 'https://github.com/esdrasfurmanovicz/doccraft/releases/latest' },
+          ],
+        },
+        {
           path: '/projetos/sif',
           name: 'SIF: Sistema de Irrigação Facilitado',
           image: './img/sif.jpg',
@@ -201,6 +216,21 @@ export const content = {
     en: {
       title: 'Projects',
       items: [
+        {
+          path: '/projects/doccraft',
+          name: 'DocCraft: document editor',
+          image: './img/doccraft.jpg',
+          featured: true,
+          problem: 'Building a poster, a proposal or a report with good formatting usually takes several tools, accounts and sending your data to third parties.',
+          solution: 'Custom editor with two modes: free canvas (nested elements, layers, alignment, gradients, shadows and full typography) and rich text (tables, resizable images, task lists and a / block menu). Exports PDF, HTML and Markdown, runs in the browser or as a desktop app and needs no login.',
+          result: 'Online demo, Windows, macOS and Linux installers built by CI, PDF that matches what you see in the editor, and a responsive mobile layout.',
+          stack: ['React', 'TypeScript', 'Node.js', 'Express', 'SQLite', 'Electron', 'Tiptap'],
+          links: [
+            { label: 'demo', href: 'https://esdrasfurmanovicz.github.io/doccraft/' },
+            { label: 'github', href: 'https://github.com/esdrasfurmanovicz/doccraft' },
+            { label: 'download the app', href: 'https://github.com/esdrasfurmanovicz/doccraft/releases/latest' },
+          ],
+        },
         {
           path: '/projects/sif',
           name: 'SIF: Facilitated Irrigation System',
