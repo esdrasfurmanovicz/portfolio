@@ -1,3 +1,39 @@
+// Galerias de fotos de cada projeto (a foto de destaque do card entra como primeira slide automaticamente).
+const galleries = {
+  doccraft: [
+    { src: './img/gallery/doccraft-2-canvas.jpg', pt: 'Modo canvas: elementos livres, camadas e painel de propriedades', en: 'Canvas mode: free elements, layers and properties panel' },
+    { src: './img/gallery/doccraft-3-richtext.jpg', pt: 'Modo texto rico: títulos, listas de tarefas, tabelas e imagens', en: 'Rich text mode: headings, task lists, tables and images' },
+    { src: './img/gallery/doccraft-4-slash-menu.jpg', pt: 'Menu de blocos com / para inserir conteúdo sem tirar a mão do teclado', en: 'Slash menu to insert content without leaving the keyboard' },
+    { src: './img/gallery/doccraft-5-export.jpg', pt: 'Exportação para PDF, HTML e Markdown', en: 'Export to PDF, HTML and Markdown' },
+    { src: './img/gallery/doccraft-6-dashboard.jpg', pt: 'Lista de documentos', en: 'Document list' },
+    { src: './img/gallery/doccraft-7-mobile.jpg', pt: 'Layout responsivo no celular', en: 'Responsive layout on mobile' },
+  ],
+  conferencia: [
+    { src: './img/gallery/conferencia-1-login.jpg', pt: 'Entrada do sistema', en: 'Sign-in screen' },
+    { src: './img/gallery/conferencia-3-clientes.jpg', pt: 'Cadastro de clientes e perfis de retenção', en: 'Client registry and withholding profiles' },
+    { src: './img/gallery/conferencia-5-perfis.jpg', pt: 'Perfis de retenção de impostos', en: 'Tax withholding profiles' },
+    { src: './img/gallery/conferencia-6-impostos.jpg', pt: 'Catálogo de impostos', en: 'Tax catalog' },
+  ],
+  sif: [
+    { src: './img/gallery/sif-1-login.jpg', pt: 'Login do produtor', en: 'Producer sign-in' },
+    { src: './img/gallery/sif-2-dispositivos.jpg', pt: 'Dispositivos cadastrados, com temperatura e umidade em tempo real', en: 'Registered devices with real-time temperature and humidity' },
+    { src: './img/gallery/sif-3-relatorio.jpg', pt: 'Relatório de 24 horas: umidade, temperatura e litros bombeados', en: '24-hour report: humidity, temperature and pumped liters' },
+    { src: './img/gallery/sif-4-configuracao.jpg', pt: 'Configuração do dispositivo: planta, bomba e modo de irrigação', en: 'Device setup: plant, pump and irrigation mode' },
+    { src: './img/gallery/sif-5-adicionar.jpg', pt: 'Adicionar um novo dispositivo pelo número de identificação', en: 'Add a new device by its ID number' },
+    { src: './img/gallery/sif-6-conta.jpg', pt: 'Configurações da conta do usuário', en: 'User account settings' },
+  ],
+  biblioteca: [
+    { src: './img/gallery/biblioteca-1-login.jpg', pt: 'Login por CPF', en: 'CPF sign-in' },
+    { src: './img/gallery/biblioteca-2-dashboard.jpg', pt: 'Painel com totais do acervo e empréstimos por mês', en: 'Dashboard with catalog totals and monthly loans' },
+    { src: './img/gallery/biblioteca-3-emprestimos.jpg', pt: 'Todos os empréstimos, com status por cor', en: 'All loans, with color-coded status' },
+    { src: './img/gallery/biblioteca-4-ativos.jpg', pt: 'Empréstimos ativos, com ações de devolver e renovar', en: 'Active loans, with return and renew actions' },
+    { src: './img/gallery/biblioteca-5-livros.jpg', pt: 'Listagem de livros', en: 'Book list' },
+    { src: './img/gallery/biblioteca-6-clientes.jpg', pt: 'Listagem de clientes', en: 'Client list' },
+    { src: './img/gallery/biblioteca-7-formulario.jpg', pt: 'Formulário de cadastro', en: 'Registration form' },
+  ],
+}
+const gal = (key, l) => galleries[key].map((g) => ({ src: g.src, caption: g[l] }))
+
 export const content = {
   nav: {
     pt: [
@@ -163,6 +199,7 @@ export const content = {
           path: '/projetos/doccraft',
           name: 'DocCraft: editor de documentos',
           image: './img/doccraft.jpg',
+          gallery: gal('doccraft', 'pt'),
           featured: true,
           problem: 'Montar um cartaz, uma proposta ou um relatório bem formatado costuma exigir várias ferramentas, contas e o envio dos seus dados para terceiros.',
           solution: 'Editor próprio com dois modos: canvas livre (elementos aninhados, camadas, alinhamento, degradê, sombra e tipografia completa) e texto rico (tabelas, imagens redimensionáveis, listas de tarefas e menu de blocos com /). Exporta PDF, HTML e Markdown, roda no navegador ou como app desktop e não pede login.',
@@ -178,6 +215,7 @@ export const content = {
           path: '/projetos/conferencia-financeira',
           name: 'Conferência Financeira',
           image: './img/conferencia.jpg',
+          gallery: gal('conferencia', 'pt'),
           featured: true,
           problem: 'Times financeiros conferem recebimentos em planilha: alguém marca "ok", mas ninguém sabe quem conferiu, quando, nem o que mudou depois de fechado o mês. O cálculo de retenção de impostos costuma ser feito à mão.',
           solution: 'Checklist mensal em Laravel: o mês é aberto com os clientes ativos, cada cliente é simulado e conferido, e o fechamento trava a edição (reabrir exige um motivo e fica no histórico). O simulador aplica tabela de alíquotas e perfil de retenção, inclusive a regra de piso mínimo para grupos de impostos pequenos. Tem perfis de administrador e usuário, tour guiado no primeiro acesso e ajuda em cada tela.',
@@ -189,6 +227,7 @@ export const content = {
           path: '/projetos/sif',
           name: 'SIF: Sistema de Irrigação Facilitado',
           image: './img/sif.jpg',
+          gallery: gal('sif', 'pt'),
           problem: 'Produtor rural pequeno não tem orçamento pra automação de irrigação pronta, e perde água e produtividade ajustando tudo manualmente.',
           solution: 'Sistema próprio com ESP32 controlando válvulas, backend em PHP/Laravel decidindo quando irrigar com base em regras configuráveis e dado coletado em tempo real.',
           result: '1º lugar na FI Ciências, feira internacional de ciências.',
@@ -202,6 +241,7 @@ export const content = {
           path: '/projetos/biblioteca',
           name: 'Sistema de Biblioteca',
           image: './img/library.jpg',
+          gallery: gal('biblioteca', 'pt'),
           problem: 'Controle de empréstimo e acervo feito manualmente, sujeito a erro humano e perda de histórico.',
           solution: 'CRUD de livros, autores, clientes e empréstimos (prazo, renovação, devolução) em PHP puro e MySQL, com Docker, autenticação por sessão, senhas com bcrypt e proteção CSRF.',
           result: 'Meu primeiro sistema completo em PHP puro: a base antes de migrar para Laravel.',
@@ -218,6 +258,7 @@ export const content = {
           path: '/projects/doccraft',
           name: 'DocCraft: document editor',
           image: './img/doccraft.jpg',
+          gallery: gal('doccraft', 'en'),
           featured: true,
           problem: 'Building a poster, a proposal or a report with good formatting usually takes several tools, accounts and sending your data to third parties.',
           solution: 'Custom editor with two modes: free canvas (nested elements, layers, alignment, gradients, shadows and full typography) and rich text (tables, resizable images, task lists and a / block menu). Exports PDF, HTML and Markdown, runs in the browser or as a desktop app and needs no login.',
@@ -233,6 +274,7 @@ export const content = {
           path: '/projects/financial-reconciliation',
           name: 'Financial Reconciliation',
           image: './img/conferencia.jpg',
+          gallery: gal('conferencia', 'en'),
           featured: true,
           problem: 'Finance teams reconcile client payments in a spreadsheet: someone ticks "ok", but nobody knows who checked it, when, or what changed after the month was closed. Tax withholding is usually calculated by hand.',
           solution: 'Monthly checklist built with Laravel: the month opens with the active clients, each client is simulated and checked, and closing the month locks editing (reopening requires a reason and is logged). The simulator applies a rate card and a withholding profile, including the minimum-floor rule for groups of small taxes. It has admin and user roles, a guided tour on first access and help on every screen.',
@@ -244,6 +286,7 @@ export const content = {
           path: '/projects/sif',
           name: 'SIF: Facilitated Irrigation System',
           image: './img/sif.jpg',
+          gallery: gal('sif', 'en'),
           problem: "A small rural producer can't afford off-the-shelf irrigation automation, and loses water and yield adjusting everything by hand.",
           solution: 'Custom system with ESP32 controlling valves, PHP/Laravel backend deciding when to irrigate based on configurable rules and real-time data.',
           result: '1st place at FI Ciências, international science fair.',
@@ -257,6 +300,7 @@ export const content = {
           path: '/projects/library',
           name: 'Library Management System',
           image: './img/library.jpg',
+          gallery: gal('biblioteca', 'en'),
           problem: 'Manual tracking of loans and inventory, prone to human error and lost history.',
           solution: 'CRUD for books, authors, clients and loans (due dates, renewals, returns) in plain PHP and MySQL, with Docker, session auth, bcrypt passwords and CSRF protection.',
           result: 'My first complete plain-PHP system: the foundation before moving to Laravel.',

@@ -1,6 +1,27 @@
 <script setup>
+import { computed, ref } from 'vue'
 import { lang } from '../composables/useLang.js'
 import { content } from '../data/content.js'
+import GalleryModal from './GalleryModal.vue'
+
+const ui = {
+  pt: { open: (n) => `Abrir galeria de fotos de ${n}`, photos: 'fotos' },
+  en: { open: (n) => `Open photo gallery for ${n}`, photos: 'photos' },
+}
+const t = computed(() => ui[lang.value] || ui.pt)
+
+// a foto de destaque do card é a primeira da galeria; as demais vêm de `gallery`
+function slides(p) {
+  return [{ src: p.image, caption: p.name }, ...(p.gallery || [])]
+}
+
+const gallery = ref({ open: false, items: [], title: '', path: '' })
+function openGallery(p) {
+  gallery.value = { open: true, items: slides(p), title: p.name, path: p.path }
+}
+function closeGallery() {
+  gallery.value.open = false
+}
 </script>
 
 <template>
@@ -13,7 +34,17 @@ import { content } from '../data/content.js'
 
       <div class="grid">
         <article v-for="(p, i) in content.projects[lang].items" :key="i" class="card project" :class="{ featured: p.featured }">
-          <img :src="p.image" :alt="p.name" class="thumb" loading="lazy" />
+          <button type="button" class="thumb-btn" :aria-label="t.open(p.name)" @click="openGallery(p)">
+            <img :src="p.image" :alt="p.name" class="thumb" loading="lazy" />
+            <span class="thumb-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="5" width="18" height="14" rx="2.5" />
+                <circle cx="8.5" cy="10" r="1.6" />
+                <path d="M21 16l-5-5-8 8" />
+              </svg>
+              <span class="mono">{{ slides(p).length }} {{ t.photos }}</span>
+            </span>
+          </button>
           <div class="body">
             <p class="path mono">{{ p.path }}</p>
             <h3>{{ p.name }}</h3>
@@ -38,6 +69,14 @@ import { content } from '../data/content.js'
         </article>
       </div>
     </div>
+
+    <GalleryModal
+      :open="gallery.open"
+      :items="gallery.items"
+      :title="gallery.title"
+      :path="gallery.path"
+      @close="closeGallery"
+    />
   </section>
 </template>
 
@@ -56,13 +95,77 @@ import { content } from '../data/content.js'
   flex-direction: column;
 }
 
+.thumb-btn {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-raised);
+  overflow: hidden;
+  cursor: zoom-in;
+  font: inherit;
+  color: inherit;
+}
+
 .thumb {
+  display: block;
   width: 100%;
   aspect-ratio: 5 / 2; /* mesmo formato das capturas (1600x640), sem cortar */
   height: auto;
   object-fit: cover;
-  border-bottom: 1px solid var(--border);
   filter: grayscale(0.4);
+  transition: transform 0.45s ease, filter 0.3s ease;
+}
+
+/* escurece a imagem e mostra o ícone da galeria no canto inferior direito */
+.thumb-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8, 9, 10, 0.55), rgba(8, 9, 10, 0) 55%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.thumb-hint {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px 7px 10px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-size: 0.74rem;
+  font-weight: 700;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+
+.thumb-btn:hover .thumb,
+.thumb-btn:focus-visible .thumb {
+  transform: scale(1.035);
+  filter: grayscale(0);
+}
+.thumb-btn:hover::after,
+.thumb-btn:focus-visible::after { opacity: 1; }
+.thumb-btn:hover .thumb-hint,
+.thumb-btn:focus-visible .thumb-hint { opacity: 1; transform: none; }
+.thumb-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+/* telas de toque não têm hover: o ícone fica sempre visível */
+@media (hover: none) {
+  .thumb-hint { opacity: 1; transform: none; }
 }
 
 .body {
@@ -138,13 +241,17 @@ dd.result {
   flex-direction: row;
 }
 
-.featured .thumb {
+.featured .thumb-btn {
   width: 54%;
-  height: auto;
-  min-height: 340px;
   flex-shrink: 0;
   border-bottom: none;
   border-right: 1px solid var(--border);
+}
+
+.featured .thumb {
+  height: 100%;
+  min-height: 340px;
+  aspect-ratio: auto;
   filter: none;
 }
 
@@ -171,13 +278,16 @@ dd.result {
     flex-direction: column;
   }
 
-  .featured .thumb {
+  .featured .thumb-btn {
     width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .featured .thumb {
     min-height: 0;
     height: auto;
     aspect-ratio: 1 / 1;
-    border-right: none;
-    border-bottom: 1px solid var(--border);
   }
 
   .featured .body {
