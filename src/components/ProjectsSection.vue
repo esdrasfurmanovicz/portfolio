@@ -44,11 +44,13 @@ import { content } from '../data/content.js'
 <style scoped>
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 22px;
 }
 
+/* cards comuns dividem a linha em duas metades; os destacados ocupam a linha inteira */
 .project {
+  grid-column: span 3;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -56,7 +58,8 @@ import { content } from '../data/content.js'
 
 .thumb {
   width: 100%;
-  height: 150px;
+  aspect-ratio: 5 / 2; /* mesmo formato das capturas (1600x640), sem cortar */
+  height: auto;
   object-fit: cover;
   border-bottom: 1px solid var(--border);
   filter: grayscale(0.4);
@@ -157,6 +160,11 @@ dd.result {
 @media (max-width: 960px) {
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .project,
+  .project.featured {
+    grid-column: 1 / -1;
   }
 
   .project.featured {
