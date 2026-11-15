@@ -83,7 +83,7 @@ export const content = {
     pt: {
       title: 'Sobre',
       paragraphs: [
-        'Entrei em produção resolvendo problema real antes de aprender o nome bonito da solução. Hoje trabalho na Sismetro mantendo e evoluindo sistemas PHP/Laravel usados diariamente: isso significa lidar com dado sujo, regra de negócio contada de boca em boca e decisão que não pode quebrar o que já funciona.',
+        'Trabalho em dois produtos em produção na Sismetro: um sistema de gestão usado por cerca de 200 empresas e o ERP da companhia, onde concentro a maior parte do tempo — módulos de clientes, propostas, contratos e, principalmente, o módulo fiscal e financeiro, com emissão de documentos fiscais eletrônicos em XML e integração com órgãos governamentais. Isso significa lidar com dado sujo, regra de negócio contada de boca em boca e decisão que não pode quebrar o que já está em produção para quem já usa.',
         'Fora do expediente, construí o <strong>SIF</strong> (irrigação automatizada com ESP32, PHP e Laravel), premiado em feira internacional de ciências, e mantenho uma rotina de estudo em segurança de aplicações web e Laravel avançado. Prefiro sistema previsível a abstração elegante que ninguém mais entende depois de seis meses.',
       ],
       terminal: [
@@ -97,7 +97,7 @@ export const content = {
     en: {
       title: 'About',
       paragraphs: [
-        "I got into production fixing a real problem before I learned the proper name for the solution. Today I work at Sismetro maintaining and evolving PHP/Laravel systems used daily: that means dirty data, business rules passed down by word of mouth, and decisions that can't break what already works.",
+        "I work on two production products at Sismetro: a management system used by around 200 companies, and the company's ERP, where I spend most of my time. That covers client, proposal and contract modules and, mainly, the tax and finance module: issuing electronic tax documents in XML and integrating with government agencies. It means dealing with dirty data, business rules passed down by word of mouth, and decisions that can't break what's already in production for the people using it.",
         'Outside work, I built <strong>SIF</strong> (automated irrigation with ESP32, PHP and Laravel), awarded at an international science fair, and I keep a study routine in web application security and advanced Laravel. I prefer a predictable system over an elegant abstraction nobody understands six months later.',
       ],
       terminal: [
@@ -121,20 +121,22 @@ export const content = {
           place: 'Marechal Cândido Rondon, PR',
           period: 'out/2024 - atual',
           bullets: [
-            'Mantenho e evoluo sistemas PHP/Laravel em produção, usados diariamente pela empresa.',
-            'Construo e integro APIs REST internas e externas conectando sistemas distintos.',
-            'Debug e correção de sistemas legados sem interromper a operação da empresa.',
+            'Implemento e evoluo os módulos de clientes, propostas, contratos e financeiro do ERP, do levantamento de requisito com a área de negócio até a entrega em produção.',
+            'Atuo no módulo fiscal: emissão e processamento de documentos fiscais eletrônicos em XML e integração com órgãos governamentais, com isolamento de dados por empresa (multi-tenant).',
+            'Modelo e ajusto o banco MySQL, incluindo revisão de queries e índices em pontos de lentidão.',
+            'Escrevo testes automatizados com PHPUnit, uso filas para processamento assíncrono e acompanho o pipeline de integração e entrega contínuas (CI/CD).',
           ],
         },
         {
           tag: 'EXP_02',
-          role: 'Auxiliar Administrativo',
+          role: 'Helpdesk',
           company: 'Mageshop',
           place: 'Marechal Cândido Rondon, PR',
           period: 'mai/2024 - set/2024',
           bullets: [
-            'Configurei e integrei lojas na plataforma Magento para clientes reais.',
-            'Suporte técnico direto a lojistas, incluindo treinamento de uso da plataforma.',
+            'Suporte a lojistas em plataforma de e-commerce baseada em Magento: pedidos, cadastro de produtos e configurações de loja, com diagnóstico inicial antes de escalar.',
+            'Investigava falhas na plataforma e escalava para o time técnico com reprodução do erro e impacto documentados.',
+            'Apoiei integrações entre a loja e sistemas externos, e ajustes de SEO em páginas de produto e categoria.',
           ],
         },
         {
@@ -160,20 +162,22 @@ export const content = {
           place: 'Marechal Cândido Rondon, PR',
           period: 'Oct/2024 - present',
           bullets: [
-            'Maintain and evolve production PHP/Laravel systems used daily by the company.',
-            'Build and integrate internal and external REST APIs connecting distinct systems.',
-            'Debug and fix legacy systems without interrupting company operations.',
+            "Build and evolve the ERP's client, proposal, contract and finance modules, from gathering requirements with the business side to shipping to production.",
+            'Work on the tax module: issuing and processing electronic tax documents in XML and integrating with government agencies, with per-company data isolation (multi-tenant).',
+            'Model and tune the MySQL database, including reviewing queries and indexes where things run slow.',
+            'Write automated tests with PHPUnit, use queues for async processing, and keep an eye on the CI/CD pipeline.',
           ],
         },
         {
           tag: 'EXP_02',
-          role: 'Administrative Assistant',
+          role: 'Helpdesk',
           company: 'Mageshop',
           place: 'Marechal Cândido Rondon, PR',
           period: 'May/2024 - Sep/2024',
           bullets: [
-            'Configured and integrated stores on the Magento platform for real clients.',
-            'Direct technical support to shop owners, including platform training.',
+            'Supported shop owners on a Magento-based e-commerce platform: orders, product listings and store settings, with first-level diagnosis before escalating.',
+            'Investigated platform failures and escalated to the tech team with the error reproduced and the impact documented.',
+            'Helped with integrations between the store and external systems, and with SEO tweaks on product and category pages.',
           ],
         },
         {
@@ -344,7 +348,7 @@ export const content = {
         { name: 'Programação FullStack PHP', place: 'Sismetro · 200h', period: '2024' },
         { name: 'JavaScript, jQuery e AJAX', place: 'Udemy · 30h', period: '2024' },
         { name: 'Git e GitHub', place: 'Curso em Vídeo · 20h', period: '2023' },
-        { name: 'Palestrante: FISoL', place: 'Festival Internacional de Software Livre', period: '2025' },
+        { name: 'Palestra "Inovação de baixo custo"', place: 'FLISoL Marechal Cândido Rondon, festival internacional de software livre — sobre construir o SIF com custo mínimo e chegar ao 1º lugar na FICiências', period: '2025' },
       ],
     },
     en: {
@@ -357,7 +361,7 @@ export const content = {
         { name: 'FullStack PHP Programming', place: 'Sismetro · 200h', period: '2024' },
         { name: 'JavaScript, jQuery and AJAX', place: 'Udemy · 30h', period: '2024' },
         { name: 'Git and GitHub', place: 'Curso em Vídeo · 20h', period: '2023' },
-        { name: 'Speaker: FISoL', place: 'International Free Software Festival', period: '2025' },
+        { name: 'Talk "Low-cost innovation"', place: 'FLISoL Marechal Cândido Rondon, international free software festival — on building SIF on a minimal budget and taking 1st place at FICiências', period: '2025' },
       ],
     },
   },
