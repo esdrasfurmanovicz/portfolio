@@ -244,6 +244,7 @@ export const content = {
           result: '1º lugar na FI Ciências, feira internacional de ciências.',
           stack: ['PHP', 'Laravel', 'ESP32', 'MySQL'],
           links: [
+            { label: 'demo', href: 'https://sistema-irrigacao-facilitado.github.io/laravel-sif/' },
             { label: 'github', href: 'https://github.com/sistema-irrigacao-facilitado' },
             { label: 'matéria', href: 'https://institutosismetro.org/2024/11/30/alunos-do-instituto-sismetro-conquistam-1-lugar-em-feira-internacional/' },
           ],
@@ -328,6 +329,7 @@ export const content = {
           result: '1st place at FI Ciências, international science fair.',
           stack: ['PHP', 'Laravel', 'ESP32', 'MySQL'],
           links: [
+            { label: 'demo', href: 'https://sistema-irrigacao-facilitado.github.io/laravel-sif/' },
             { label: 'github', href: 'https://github.com/sistema-irrigacao-facilitado' },
             { label: 'press', href: 'https://institutosismetro.org/2024/11/30/alunos-do-instituto-sismetro-conquistam-1-lugar-em-feira-internacional/' },
           ],
